@@ -1,0 +1,15 @@
+
+
+# UnauthorizedCacheControlHeaderStrategy
+
+## Enum
+
+
+* `FAIL_WITH_403` (value: `"FAIL_WITH_403"`)
+
+* `SUCCEED_WITH_RESPONSE_HEADER` (value: `"SUCCEED_WITH_RESPONSE_HEADER"`)
+
+* `SUCCEED_WITHOUT_RESPONSE_HEADER` (value: `"SUCCEED_WITHOUT_RESPONSE_HEADER"`)
+
+
+
