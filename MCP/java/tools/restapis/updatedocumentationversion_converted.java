@@ -1,0 +1,154 @@
+/**
+ * MCP Server function for Updates a documentation version.
+ */
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.*;
+import java.util.function.Function;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+
+class Patch_Restapis_Restapi_Id_Documentation_Versions_Doc_VersionMCPTool {
+    
+    public static Function<MCPServer.MCPRequest, MCPServer.MCPToolResult> getPatch_Restapis_Restapi_Id_Documentation_Versions_Doc_VersionHandler(MCPServer.APIConfig config) {
+        return (request) -> {
+            try {
+                Map<String, Object> args = request.getArguments();
+                if (args == null) {
+                    return new MCPServer.MCPToolResult("Invalid arguments object", true);
+                }
+                
+                List<String> queryParams = new ArrayList<>();
+        if (args.containsKey("X-Amz-Content-Sha256")) {
+            queryParams.add("X-Amz-Content-Sha256=" + args.get("X-Amz-Content-Sha256"));
+        }
+        if (args.containsKey("X-Amz-Date")) {
+            queryParams.add("X-Amz-Date=" + args.get("X-Amz-Date"));
+        }
+        if (args.containsKey("X-Amz-Algorithm")) {
+            queryParams.add("X-Amz-Algorithm=" + args.get("X-Amz-Algorithm"));
+        }
+        if (args.containsKey("X-Amz-Credential")) {
+            queryParams.add("X-Amz-Credential=" + args.get("X-Amz-Credential"));
+        }
+        if (args.containsKey("X-Amz-Security-Token")) {
+            queryParams.add("X-Amz-Security-Token=" + args.get("X-Amz-Security-Token"));
+        }
+        if (args.containsKey("X-Amz-Signature")) {
+            queryParams.add("X-Amz-Signature=" + args.get("X-Amz-Signature"));
+        }
+        if (args.containsKey("X-Amz-SignedHeaders")) {
+            queryParams.add("X-Amz-SignedHeaders=" + args.get("X-Amz-SignedHeaders"));
+        }
+        if (args.containsKey("restapi_id")) {
+            queryParams.add("restapi_id=" + args.get("restapi_id"));
+        }
+        if (args.containsKey("doc_version")) {
+            queryParams.add("doc_version=" + args.get("doc_version"));
+        }
+        if (args.containsKey("patchOperations")) {
+            queryParams.add("patchOperations=" + args.get("patchOperations"));
+        }
+                
+                String queryString = queryParams.isEmpty() ? "" : "?" + String.join("&", queryParams);
+                String url = config.getBaseUrl() + "/api/v2/patch_restapis_restapi_id_documentation_versions_doc_version" + queryString;
+                
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Authorization", "Bearer " + config.getApiKey())
+                    .header("Accept", "application/json")
+                    .GET()
+                    .build();
+                
+                HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+                
+                if (response.statusCode() >= 400) {
+                    return new MCPServer.MCPToolResult("API error: " + response.body(), true);
+                }
+                
+                // Pretty print JSON
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode jsonNode = mapper.readTree(response.body());
+                String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
+                
+                return new MCPServer.MCPToolResult(prettyJson);
+                
+            } catch (IOException | InterruptedException e) {
+                return new MCPServer.MCPToolResult("Request failed: " + e.getMessage(), true);
+            } catch (Exception e) {
+                return new MCPServer.MCPToolResult("Unexpected error: " + e.getMessage(), true);
+            }
+        };
+    }
+    
+    public static MCPServer.Tool createPatch_Restapis_Restapi_Id_Documentation_Versions_Doc_VersionTool(MCPServer.APIConfig config) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("type", "object");
+        Map<String, Object> properties = new HashMap<>();
+        Map<String, Object> X-Amz-Content-Sha256Property = new HashMap<>();
+        X-Amz-Content-Sha256Property.put("type", "string");
+        X-Amz-Content-Sha256Property.put("required", false);
+        X-Amz-Content-Sha256Property.put("description", "");
+        properties.put("X-Amz-Content-Sha256", X-Amz-Content-Sha256Property);
+        Map<String, Object> X-Amz-DateProperty = new HashMap<>();
+        X-Amz-DateProperty.put("type", "string");
+        X-Amz-DateProperty.put("required", false);
+        X-Amz-DateProperty.put("description", "");
+        properties.put("X-Amz-Date", X-Amz-DateProperty);
+        Map<String, Object> X-Amz-AlgorithmProperty = new HashMap<>();
+        X-Amz-AlgorithmProperty.put("type", "string");
+        X-Amz-AlgorithmProperty.put("required", false);
+        X-Amz-AlgorithmProperty.put("description", "");
+        properties.put("X-Amz-Algorithm", X-Amz-AlgorithmProperty);
+        Map<String, Object> X-Amz-CredentialProperty = new HashMap<>();
+        X-Amz-CredentialProperty.put("type", "string");
+        X-Amz-CredentialProperty.put("required", false);
+        X-Amz-CredentialProperty.put("description", "");
+        properties.put("X-Amz-Credential", X-Amz-CredentialProperty);
+        Map<String, Object> X-Amz-Security-TokenProperty = new HashMap<>();
+        X-Amz-Security-TokenProperty.put("type", "string");
+        X-Amz-Security-TokenProperty.put("required", false);
+        X-Amz-Security-TokenProperty.put("description", "");
+        properties.put("X-Amz-Security-Token", X-Amz-Security-TokenProperty);
+        Map<String, Object> X-Amz-SignatureProperty = new HashMap<>();
+        X-Amz-SignatureProperty.put("type", "string");
+        X-Amz-SignatureProperty.put("required", false);
+        X-Amz-SignatureProperty.put("description", "");
+        properties.put("X-Amz-Signature", X-Amz-SignatureProperty);
+        Map<String, Object> X-Amz-SignedHeadersProperty = new HashMap<>();
+        X-Amz-SignedHeadersProperty.put("type", "string");
+        X-Amz-SignedHeadersProperty.put("required", false);
+        X-Amz-SignedHeadersProperty.put("description", "");
+        properties.put("X-Amz-SignedHeaders", X-Amz-SignedHeadersProperty);
+        Map<String, Object> restapi_idProperty = new HashMap<>();
+        restapi_idProperty.put("type", "string");
+        restapi_idProperty.put("required", true);
+        restapi_idProperty.put("description", "The string identifier of the associated RestApi..");
+        properties.put("restapi_id", restapi_idProperty);
+        Map<String, Object> doc_versionProperty = new HashMap<>();
+        doc_versionProperty.put("type", "string");
+        doc_versionProperty.put("required", true);
+        doc_versionProperty.put("description", "The version identifier of the to-be-updated documentation version.");
+        properties.put("doc_version", doc_versionProperty);
+        Map<String, Object> patchOperationsProperty = new HashMap<>();
+        patchOperationsProperty.put("type", "string");
+        patchOperationsProperty.put("required", false);
+        patchOperationsProperty.put("description", "Input parameter: A list of operations describing the updates to apply to the specified resource. The patches are applied in the order specified in the list.");
+        properties.put("patchOperations", patchOperationsProperty);
+        parameters.put("properties", properties);
+        
+        MCPServer.ToolDefinition definition = new MCPServer.ToolDefinition(
+            "patch_restapis_restapi_id_documentation_versions_doc_version",
+            "Updates a documentation version.",
+            parameters
+        );
+        
+        return new MCPServer.Tool(definition, getPatch_Restapis_Restapi_Id_Documentation_Versions_Doc_VersionHandler(config));
+    }
+    
+}
